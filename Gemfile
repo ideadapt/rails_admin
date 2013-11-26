@@ -34,7 +34,7 @@ group :mongoid do
   gem 'carrierwave-mongoid', github: 'jnicklas/carrierwave-mongoid', :require => 'carrierwave/mongoid'
 end
 
-group :development do
+group :development, :test do
   gem 'pry', '>= 0.9'
   gem 'pry-debugger', '>= 0.2', :platforms => :mri_19
 end
@@ -46,7 +46,7 @@ group :test do
   gem 'coveralls', :require => false
   gem 'database_cleaner', '~> 1.0.0' # https://github.com/bmabey/database_cleaner/issues/224
   gem 'devise', '~> 3.0.0.rc'
-  gem 'dragonfly', '>= 0.9'
+  gem 'dragonfly', '~> 0.9.0'
   gem 'rack-cache', :require => 'rack/cache'
   gem 'factory_girl', '>= 4.2'
   gem 'generator_spec', '>= 0.8'
