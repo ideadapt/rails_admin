@@ -69,6 +69,16 @@ describe "RailsAdmin::Adapters::ActiveRecord::AbstractObject", :active_record =>
         object.set_attributes({ :name  => name, :division_ids => divisions.map(&:id) })
       end
 
+      it 'does not validate on set_attributes' do
+        divisions.first.assign_attributes({name: 'invalid'})
+        object.set_attributes({name: 'valid', divisions:[divisions.first]})
+        object.set_attributes({name: 'valid'})
+
+        expect do
+          divisions.first.save!
+        end.to raise_exception(ActiveRecord::RecordInvalid)
+      end
+
       it "creates a League with given attributes and associations" do
         expect(object.save).to be_true
         league.reload

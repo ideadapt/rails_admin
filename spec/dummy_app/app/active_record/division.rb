@@ -10,4 +10,10 @@ class Division < ActiveRecord::Base
 
   validates_numericality_of(:custom_league_id, :only_integer => true)
   validates_presence_of(:name)
+  validate :do_validation
+
+  private
+  def do_validation
+    errors.add(:base, 'Error here') if name == 'invalid'
+  end
 end
